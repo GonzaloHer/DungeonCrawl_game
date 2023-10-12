@@ -5,6 +5,8 @@ defmodule DungeonCrawl.CLI.Main do
 
   def start_game do
     welcome_message()
+    Shell.prompt("Press Enter to continue")
+    hero_choice()
   end
 
   defp welcome_message do
@@ -14,5 +16,9 @@ defmodule DungeonCrawl.CLI.Main do
     Shell.info("")
     Shell.info("You need to survive and find the exit!!!")
     Shell.info("")
+  end
+
+  defp hero_choice do
+    DungeonCrawl.CLI.HeroChoice.start()
   end
 end
