@@ -6,4 +6,5 @@ defmodule DungeonCrawl.Character do
             max_hit_points: 0,
             attack_description: nil,
             damage_range: nil
+
 end

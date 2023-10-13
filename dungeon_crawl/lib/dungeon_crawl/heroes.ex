@@ -3,7 +3,7 @@ defmodule DungeonCrawl.Heroes do
   alias DungeonCrawl.Character
 
   # es una funcion con sintaxis in line
-  def all,
+  def all,   # DEVUELVE UNA LISTA CON TODOS LOS CHACATERS
     do: [
       %Character{
         name: "Knight",
