@@ -25,4 +25,22 @@ defmodule DungeonCrawl.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
   end
+
+  defp deps do
+    [
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+    ]
+  end
+
+  def project do
+    [
+      app: :dungeon_crawl,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      dialyzer: [plt_add_apps: [:mix]]
+    ]
+  end
 end

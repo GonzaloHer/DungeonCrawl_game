@@ -10,7 +10,6 @@ defmodule DungeonCrawl.CLI.HeroChoice do
 
 
       heroes
-      |> Enum.map(&(&1.name)) #obtengo los nombres de todos los hero's apartir de la lista de characters "options"
       |> display_options
       |> generate_question
       |> Shell.prompt  #despliga un mensaje y espera un inpot del usuario
