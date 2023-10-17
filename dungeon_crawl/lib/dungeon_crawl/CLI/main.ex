@@ -9,8 +9,9 @@ defmodule DungeonCrawl.CLI.Main do
     Shell.prompt("Press Enter to continue")
     mode = dificulty_mode()
     hero = hero_choice()
+    rooms = DungeonCrawl.CLI.DificultyChoice.rooms(mode)
 
-    crawl(hero, mode)
+    crawl(hero, rooms)
   end
 
   defp welcome_message do
@@ -63,7 +64,9 @@ defmodule DungeonCrawl.CLI.Main do
   end
 
   defp handle_action_result({character, _}) do
-    crawl(character, dificulty_mode())
+    mode = dificulty_mode()
+    rooms = DungeonCrawl.CLI.DificultyChoice.rooms(mode)
+    crawl(character, rooms)
   end
 
   defp weighted_random_room(rooms) do
