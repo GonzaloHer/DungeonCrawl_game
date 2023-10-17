@@ -3,13 +3,27 @@ defmodule DungeonCrawl.CLI.DificultyChoice do
   import DungeonCrawl.CLI.BaseCommands
 
   def start do
-    Shell.cmd("clear") #me limpia la terminal
+    # me limpia la terminal
+    Shell.cmd("clear")
     Shell.info("Choose game mode")
-    mode = DungeonCrawl.Heroes.all()
-    find_hero_by_index = &Enum.at(heroes, &1)
+    modes = ["easy mode", "medium mode", "dificult mode"]
+    find_mode_by_index = &Enum.at(modes, &1)
 
-
-
+    modes
+    |> display_options
+    |> generate_question
+    |> Shell.prompt
+    |> parse_answer
+    |> find_mode_by_index.()
+    |> confirm_mode()
   end
+
+    def confirm_mode(index) do
+      case index do
+        "easy mode" -> DungeonCrawl.Room.all_1
+        "medium mode" -> DungeonCrawl.Room.all_2
+        "dificult mode" -> DungeonCrawl.Room.all_3
+      end
+    end
 
 end

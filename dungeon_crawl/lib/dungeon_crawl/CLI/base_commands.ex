@@ -17,6 +17,7 @@ defmodule DungeonCrawl.CLI.BaseCommands do
   end
 
   def parse_answer(answer) do
+    IO.inspect(answer, label: "answer")
     {option, _} = Integer.parse(answer)
     # hace que el index quede como que se incia desde el 0, para poder llamar luego a la funcion find_hero_by_index
     option - 1

@@ -4,7 +4,8 @@ defmodule DungeonCrawl.Character do
             hit_points: 0,
             max_hit_points: 0,
             attack_description: nil,
-            damage_range: nil
+            damage_range: nil,
+            score: 0
 
   @type t :: %DungeonCrawl.Character{
           name: String.t(),
@@ -12,7 +13,8 @@ defmodule DungeonCrawl.Character do
           hit_points: non_neg_integer,
           max_hit_points: non_neg_integer,
           attack_description: String.t(),
-          damage_range: Range.t()
+          damage_range: Range.t(),
+          score: non_neg_integer,
         }
 
   defimpl String.Chars do

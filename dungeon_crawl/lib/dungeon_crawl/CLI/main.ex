@@ -7,9 +7,10 @@ defmodule DungeonCrawl.CLI.Main do
   def start_game do
     welcome_message()
     Shell.prompt("Press Enter to continue")
-    hero_choice()
+    mode = dificulty_mode()
+    hero = hero_choice()
 
-    crawl(hero_choice(), DungeonCrawl.Room.all())
+    crawl(hero, mode)
   end
 
   defp welcome_message do
@@ -24,6 +25,10 @@ defmodule DungeonCrawl.CLI.Main do
   defp hero_choice do
     hero = DungeonCrawl.CLI.HeroChoice.start()
     %{hero | name: "You"}
+  end
+
+  defp dificulty_mode do
+    DungeonCrawl.CLI.DificultyChoice.start()
   end
 
   defp crawl(%{hit_points: 0}, _) do
@@ -58,7 +63,7 @@ defmodule DungeonCrawl.CLI.Main do
   end
 
   defp handle_action_result({character, _}) do
-    crawl(character, DungeonCrawl.Room.all())
+    crawl(character, dificulty_mode())
   end
 
   defp weighted_random_room(rooms) do
