@@ -6,7 +6,9 @@ defmodule DungeonCrawl.CLI.Main do
 
   def start_game do
     welcome_message()
-    Shell.prompt("Press Enter to continue")
+    Shell.prompt("PRESS ENTER TO CONTINUE TO THE GAME!")
+    Shell.info("")
+    Shell.info("")
     mode = dificulty_mode()
     hero = hero_choice()
     rooms = DungeonCrawl.CLI.DificultyChoice.rooms(mode)
@@ -15,12 +17,15 @@ defmodule DungeonCrawl.CLI.Main do
   end
 
   defp welcome_message do
+    Shell.info("--------------------------------------------")
+    Shell.info("")
     Shell.info("============== DUNGEON CRAWL ==============")
     Shell.info("")
     Shell.info("You awake in a dungeon full of monsters........")
     Shell.info("")
     Shell.info("You need to survive and find the exit!!!")
     Shell.info("")
+    Shell.info("--------------------------------------------")
   end
 
   defp hero_choice do

@@ -7,13 +7,14 @@ defmodule DungeonCrawl.CLI.DificultyChoice do
     Shell.cmd("clear")
     Shell.info("Choose game mode")
     modes = ["easy mode", "medium mode", "hard mode"]
-    find_mode_by_index = &Enum.at(modes, &1)
+
 
     modes
     |> display_options
     |> generate_question
     |> Shell.prompt
-    |> parse_answer
+    |> parse_answer!
+    Shell.cmd("clear")
   end
 
   def rooms(mode) do

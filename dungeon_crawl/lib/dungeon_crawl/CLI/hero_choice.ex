@@ -1,26 +1,18 @@
 defmodule DungeonCrawl.CLI.HeroChoice do
-    alias Mix.Shell.IO, as: Shell
-    import DungeonCrawl.CLI.BaseCommands
+  alias Mix.Shell.IO, as: Shell
+  import DungeonCrawl.CLI.BaseCommands
 
-    def start do
-      Shell.cmd("clear") #me limpia la terminal
-      Shell.info("Start by choosing your hero:")
-      heroes = DungeonCrawl.Heroes.all()
-      find_hero_by_index = &Enum.at(heroes, &1)
+  def start do
+    DungeonCrawl.Heroes.all()
+    |> ask_for_option()
+    |> confirm_hero()
+  end
 
-
-      heroes
-      |> display_options
-      |> generate_question
-      |> Shell.prompt  #despliga un mensaje y espera un inpot del usuario
-      |> parse_answer
-      |> find_hero_by_index.()
-      |> confirm_hero
-    end
-
-    defp confirm_hero(chosen_hero) do
-      Shell.cmd("clear")
-      Shell.info(chosen_hero.description)
-      if Shell.yes?("confirm?"), do: chosen_hero, else: start()
-    end
+  defp confirm_hero(chosen) do
+    Shell.cmd("clear")
+    Shell.info("-------------------------------------------------------")
+    Shell.info(chosen.description)
+    Shell.info("-------------------------------------------------------")
+    if Shell.yes?("Do you wanna be #{chosen.name }?"), do: chosen, else: ask_for_option(DungeonCrawl.Heroes.all())
+  end
 end
