@@ -8,12 +8,12 @@ defmodule DungeonCrawl.CLI.DificultyChoice do
     Shell.info("Choose game mode")
     modes = ["easy mode", "medium mode", "hard mode"]
 
-
-    modes
-    |> display_options
-    |> generate_question
-    |> Shell.prompt
-    |> parse_answer!
+    ask_for_option(modes)
+    # modes
+    # |> display_options
+    # |> generate_question
+    # |> Shell.prompt
+    # |> parse_answer!
     Shell.cmd("clear")
   end
 
